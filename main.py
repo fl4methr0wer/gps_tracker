@@ -1,14 +1,19 @@
 from GPS.GPSSerialReader import GPSSerialReader
+from GPS.NMEAParser import NMEAParser
 
 def main():
     serial_port = '/dev/serial0'
     baudrate = 9600
     timeout = 8
+
     gps_reader = GPSSerialReader(serial_port, baudrate, timeout)
-    # gps_reader = GPSSerialReader(serial_port, baudrate, timeout)
-    #
-    # while True:
-    #     gps_reader.readline()
+    parser = NMEAParser()
+    while True:
+        nmea_line = gps_reader.read_line()
+        location = parser.parse_location(nmea_line)
+        print(f"MAIN LOCATION :{location}")
+
+
 
 # def main2():
 #     serial_port = "/dev/serial0"
