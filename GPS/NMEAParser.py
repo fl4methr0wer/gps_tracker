@@ -14,13 +14,13 @@ class NMEAParser:
             return None
         try:
             msg = pynmea2.parse(nmea_line)
+            print(type(msg))
             return self.__message_to_location(msg)
         except pynmea2.ParseError as e:
             print(f"Could not parse NMEA: {e}")
 
-    def __message_to_location(
-            self, nmea_sentence : pynmea2.ProprietarySentence | pynmea2.QuerySentence) -> Location:
-        timestmp = nmea_sentence.timestamp
-        latitude = nmea_sentence.lat
-        longitude = nmea_sentence.lon
+    def __message_to_location(self, gga_message : pynmea2.types.talker.GGA) -> Location:
+        timestmp = gga_message.timestamp
+        latitude = gga_message.lat
+        longitude = gga_message.lon
         return Location(timestmp, latitude, longitude)
