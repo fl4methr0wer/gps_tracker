@@ -1,10 +1,36 @@
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+from GPS.GPSSerialReader import GPSSerialReader
 
+def main():
+    serial_port = '/dev/serial0'
+    baudrate = 9600
+    timeout = 8
+    gps_reader = GPSSerialReader(serial_port, baudrate, timeout)
+    # gps_reader = GPSSerialReader(serial_port, baudrate, timeout)
+    #
+    # while True:
+    #     gps_reader.readline()
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# def main2():
+#     serial_port = "/dev/serial0"
+#     baudrate = 9600
+#     timeout = 1
+#
+#     ser = serial.Serial(serial_port, baudrate, timeout=timeout)
+#     print(f"SERIAL : {ser}")
+#
+#     while True:
+#         try:
+#             line = ser.readline().decode('utf-8', errors='replace').strip()
+#             if line.startswith('$GPGGA'):
+#                 try:
+#                     msg = pynmea2.parse(line)
+#                     timestamp = datetime.combine(datetime.utcnow().date(), msg.latitude = round(msg.latitude, 4)
+#                     longitude = round(msg.longitude, 4)
+#                     print(f"{timestamp}|{latitude}|{longitude}")
+#                 except pynmea2.ParseError as e:
+#                     print("Parse error:", e)
+#         except UnicodeDecodeError:
+#             print("UnicodeDecodeError: Unable to decode the received data.")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    main()
