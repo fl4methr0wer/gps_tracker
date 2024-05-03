@@ -14,7 +14,6 @@ class NMEAParser:
             return None
         try:
             msg = pynmea2.parse(nmea_line)
-            print(type(msg))
             return self.__message_to_location(msg)
         except pynmea2.ParseError as e:
             print(f"Could not parse NMEA: {e}")

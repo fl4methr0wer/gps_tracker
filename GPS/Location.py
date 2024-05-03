@@ -1,5 +1,8 @@
+import datetime
+
+
 class Location(object):
-    def __init__(self, timestamp, latitude, longitude):
+    def __init__(self, timestamp: datetime.time, latitude: str, longitude: str):
         self.timestamp = timestamp
         self.latitude = latitude
         self.longitude = longitude
